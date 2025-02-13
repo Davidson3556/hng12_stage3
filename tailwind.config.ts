@@ -59,6 +59,7 @@ export default {
 		  fontFamily: {
 			'road_rage': ['var(--font-road_rage)'],
 			'roboto': ['var(--font-roboto)'],
+		  	'jejuMyeongjo':['var(--font-jejuMyeongjo)']
 		  },
   	}
   },

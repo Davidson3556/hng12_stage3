@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto,Road_Rage, Alatsi } from "next/font/google";
 import localFont from 'next/font/local';
-
 import "./globals.css";
 
 
@@ -20,19 +19,14 @@ const alatsi = Alatsi({
   subsets: ['latin'],
   variable: '--font-alatsi', 
 });
-
 // const jejuMyeongjo = localFont({
 //   src: [
 //     {
-//       path: 'fonts/JejuMyeongjo-Regular.ttf',
+//       path: 'fonts/JejuMyeongjo.woff2',
 //       weight: '400',
 //       style: 'normal',
 //     },
-//     {
-//       path: 'fonts/JejuMyeongjo-Regular.ttf',
-//       weight: '700',
-//       style: 'normal',
-//     },
+   
 //   ],
 //   variable: '--font-jejuMyeongjo', 
 // });
@@ -48,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${road_rage.variable} ${roboto.variable}`}>
+<html lang="en" className={`${road_rage.variable} ${roboto.variable} ${alatsi.variable}`}>
       <body className="min-h-screen bg-[#02191D] text-[#FAFAFA] antialiased">
         {children}
       </body>

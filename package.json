@@ -8,6 +8,15 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "overrides": {
+    "react-barcode": {
+      "react": "$react"
+    }
+  },
+  "resolutions": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
   "dependencies": {
     "@hookform/resolvers": "^4.0.0",
     "@radix-ui/react-label": "^2.1.2",

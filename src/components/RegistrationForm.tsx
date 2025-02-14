@@ -143,9 +143,10 @@ export const RegistrationForm = () => {
 
         <CardContent>
           <div className="space-y-6 p-5 body_card">
-            {/* Image Upload Section */}
-            <div className="p-3 border border-[#0E464F]  bg-[#052228]  md:m- rounded-xl ">
-              <label className="text-white text-sm">Upload Profile Photo</label>
+           a
+            <div className="p-4 border border-[#0E464F]  bg-[#052228]   rounded-xl ">
+              <label className="text-white text-sm ">Upload Profile Photo</label>
+              <div className='bg-[#02191D] h-[135px] mt-12 '></div>
               <div
                 onClick={() => fileInputRef.current?.click()}
                 onDragOver={(e) => {
@@ -161,15 +162,15 @@ export const RegistrationForm = () => {
                   e.currentTarget.classList.remove('border-teal-600');
                   handleFileInput(e.dataTransfer.files);
                 }}
-                className={`group w-full h-48 flex flex-col items-center justify-center border-2 border-dashed rounded-xl cursor-pointer transition-all
-                  ${previewImage ? 'border-teal-500' : 'border-teal-400 hover:border-teal-500'}
+                className={`group relative bg-[#0E464F] -mt-40  mx-auto h-40 md:w-1/2  md:h-48 flex flex-col items-center justify-center border-4 rounded-3xl cursor-pointer transition-all
+                  ${previewImage ? 'border-[#24A0B5]' : 'border-teal-400 hover:border-teal-500'}
                   ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 {previewImage ? (
                   <img
                     src={previewImage}
                     alt="Preview"
-                    className="w-full h-full object-cover rounded-xl"
+                    className="w-full h-full object-fill rounded-xl"
                   />
                 ) : (
                   <div className="flex flex-col items-center p-4 text-center">
@@ -197,6 +198,7 @@ export const RegistrationForm = () => {
                   disabled={isUploading}
                 />
               </div>
+                
               {uploadError && (
                 <p className="text-red-400 text-sm">{uploadError}</p>
               )}
@@ -213,7 +215,7 @@ export const RegistrationForm = () => {
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white">Full Name *</FormLabel>
+                      <FormLabel className="text-white">Enter your name</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -231,13 +233,13 @@ export const RegistrationForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-white">Email *</FormLabel>
+                      <FormLabel className="text-white">Enter your email *</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           type="email"
                           className="bg-[#07373F] border-[#0E464F] text-white focus:ring-teal-500"
-                          placeholder="john@example.com"
+                          placeholder="📧 hello@avioflagos.io"
                         />
                       </FormControl>
                       <FormMessage />
@@ -255,7 +257,7 @@ export const RegistrationForm = () => {
                         <Textarea
                           {...field}
                           className="bg-[#07373F] border-[#0E464F] text-white focus:ring-teal-500 min-h-[120px]"
-                          placeholder="Any special requirements or notes..."
+                          placeholder="Textarea"
                         />
                       </FormControl>
                       <FormMessage />

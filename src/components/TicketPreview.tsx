@@ -16,31 +16,31 @@ export const TicketPreview = () => {
   const { formData, ticketType, ticketCount, reset } = useTicketStore();
     const router = useRouter();
   const [isDownloading, setIsDownloading] = useState(false);
-  const [uniqueBarcode, setUniqueBarcode] = useState("");
-  const [barcodeHeight, setBarcodeHeight] = useState(50);
-  const [barcodeWidth, setBarcodeWidth] = useState(2);
+  // const [uniqueBarcode, setUniqueBarcode] = useState("");
+  // const [barcodeHeight, setBarcodeHeight] = useState(50);
+  // const [barcodeWidth, setBarcodeWidth] = useState(2);
 
-  useEffect(() => {
-    // Generate and set a unique barcode value when the component mounts
-    setUniqueBarcode(generateUniqueCode());
-  }, []);
+  // useEffect(() => {
+  //   // Generate and set a unique barcode value when the component mounts
+  //   setUniqueBarcode(generateUniqueCode());
+  // }, []);
 
-  // Responsive barcode height adjustment
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setBarcodeHeight(10);
-        setBarcodeWidth(1);
-      } else {
-        setBarcodeHeight(25);
-        setBarcodeWidth(2);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    // Set initial value
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // // Responsive barcode height adjustment
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth < 640) {
+  //       setBarcodeHeight(10);
+  //       setBarcodeWidth(1);
+  //     } else {
+  //       setBarcodeHeight(25);
+  //       setBarcodeWidth(2);
+  //     }
+  //   };
+  //   window.addEventListener("resize", handleResize);
+  //   // Set initial value
+  //   handleResize();
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
 
  // Download the ticket as an image using html2canvas
@@ -177,6 +177,14 @@ export const TicketPreview = () => {
 
             {/* Barcode */}
             <div className="text-center pt-9">
+            <Image
+                src="/icons/BarCode.svg"
+                width={200}
+                height={10}
+                alt="logo"
+                className=""
+              />
+              
             {/* {uniqueBarcode ? (
     <>
       <Barcode

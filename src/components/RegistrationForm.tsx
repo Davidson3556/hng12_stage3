@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from "next/image";
 import { useCallback, useState, useRef } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
@@ -108,10 +108,6 @@ export const RegistrationForm = () => {
     exit: { y: 20, opacity: 0 },
   };
   
-  const scaleUp = {
-    hidden: { scale: 0.95, opacity: 0 },
-    visible: { scale: 1, opacity: 1 },
-  };
 
   return (
 <motion.section

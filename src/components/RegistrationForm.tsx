@@ -129,23 +129,23 @@ export const RegistrationForm = () => {
       >
   <Card className="reg_card2">
             <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <h2 className="text-lg md:text-xl font-normal text-[#FFFFFF]">Attendee Details</h2>
-            <span className="text-xs md:text-sm text-gray-300">Step 2/3</span>
+          <CardTitle className="cardtitle1">
+            <h1 className="h1">Attendee Details</h1>
+            <span className="span1">Step 2/3</span>
           </CardTitle>
-          <div className="relative w-full bg-gray-600 h-1 mt-2 rounded">
+          <div className="progress">
             <div
-              className="absolute left-0 top-0 h-full bg-teal-500 rounded transition-all duration-300"
+              className="progress_bar"
               style={{ width: '66%' }}
             />
           </div>
         </CardHeader>
 
-        <CardContent className="border border-[#0E464F] bg-[#08252B] m-4 md:m-6 rounded-xl">
-          <div className="space-y-6 p-4">
+        <CardContent>
+          <div className="space-y-6 p-5 body_card">
             {/* Image Upload Section */}
-            <div className="space-y-2">
-              <label className="text-white text-sm">Profile Photo *</label>
+            <div className="p-3 border border-[#0E464F]  bg-[#052228]  md:m- rounded-xl ">
+              <label className="text-white text-sm">Upload Profile Photo</label>
               <div
                 onClick={() => fileInputRef.current?.click()}
                 onDragOver={(e) => {

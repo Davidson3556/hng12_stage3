@@ -43,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
 <html lang="en" className={`${road_rage.variable} ${roboto.variable} ${alatsi.variable}`}>
-      <body className="min-h-screen bg-[#02191D] text-[#FAFAFA] antialiased">
+      <body className="min-h-screen bg-[#02191D] f text-[#FAFAFA] antialiased font-roboto">
         {children}
       </body>
     </html>

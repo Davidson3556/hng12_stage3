@@ -118,16 +118,16 @@ export const RegistrationForm = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="flex flex-col items-center justify-center p-2 md:p-4"
+      className="main_card"
     >
 
 <motion.div
         variants={dropIn}
         initial="hidden"
         animate="visible"
-        className="w-full max-w-lg mx-auto"
+        className=""
       >
-  <Card className="bg-[#041E23] border-[#0E464F]">
+  <Card className="reg_card2">
             <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <h2 className="text-lg md:text-xl font-normal text-[#FFFFFF]">Attendee Details</h2>

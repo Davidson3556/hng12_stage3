@@ -50,7 +50,7 @@ const LandingPage = () => {
           <CardContent>
             <div className="mb-6 border border-[#07373F] my-4 rounded-lg mx-2 text-center p-4 bg-[radial-gradient(circle,#07373f,#0a0c1133)]">
               <h2 className="font-road_rage text-4xl md:text-5xl text-[#FAFAFA]">
-                Techember Fest "25
+                Techember Fest &quot; 25
               </h2>
               <p className="text-xs md:text-sm text-[#FAFAFA] mt-1">
                 Join us for an unforgettable experience at <br />

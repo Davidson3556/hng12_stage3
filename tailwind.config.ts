@@ -60,6 +60,7 @@ export default {
 			'road_rage': ['var(--font-road_rage)'],
 			'roboto': ['var(--font-roboto)'],
 			jejumyeongjo: ['JejuMyeongjo'],
+			'alatsi': ['var(--font-alatsi)']
 				  },
   	}
   },

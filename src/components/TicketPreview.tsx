@@ -6,7 +6,6 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Card, CardHeader, CardTitle } from "./ui/card";
-import Barcode from "react-barcode";
 import html2canvas from "html2canvas";
 
 // Function to generate a unique 12-digit number as a string
@@ -178,7 +177,7 @@ export const TicketPreview = () => {
 
             {/* Barcode */}
             <div className="text-center pt-9">
-            {uniqueBarcode ? (
+            {/* {uniqueBarcode ? (
     <>
       <Barcode
         value={uniqueBarcode}
@@ -192,7 +191,7 @@ export const TicketPreview = () => {
     </>
   ) : (
     <p className="text-xs text-[#FFFFFF]">Loading Barcode...</p>
-  )}
+  )} */}
             </div>
           </div>
         </div>

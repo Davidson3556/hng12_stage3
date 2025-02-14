@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Card, CardHeader, CardTitle } from "./ui/card";
 import Barcode from "react-barcode";
+import html2canvas from "html2canvas";
 
 // Function to generate a unique 12-digit number as a string
 function generateUniqueCode() {
@@ -43,17 +44,42 @@ export const TicketPreview = () => {
   }, []);
 
 
-  const handleDownload = () => {
-    setIsDownloading(true);
-    // Add your download logic here
-    setTimeout(() => {
-      setIsDownloading(false);
-      alert('Download complete!');
-    }, 2000);
-  };
+ // Download the ticket as an image using html2canvas
+ const handleDownload = async () => {
+  setIsDownloading(true);
+  try {
+    const ticketElement = document.getElementById("ticket-preview");
+    if (!ticketElement) {
+      throw new Error("Ticket element not found");
+    }
+
+    // Capture at desktop size with high resolution
+    const canvas = await html2canvas(ticketElement, {
+      useCORS: true,
+      scale: 3, // Triple the resolution for crisp image
+      windowWidth: 1200, // Simulate desktop viewport
+      windowHeight: 800,
+      width: 700, // Match your md:w-[700px] value
+      height: 840 // 700px * (6/5 aspect ratio) = 840px
+    });
+
+    const image = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = "ticket.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error("Download failed:", error);
+    alert("Download failed. Please try again.");
+  }
+  setIsDownloading(false);
+};
 
   return (
-    <section className="main_card">
+    <section className="main_card"
+    >
       {/* Card Container: Fixed width on md and centered */}
       <Card className="bg-[#041E23] border-[#0E464F] md:w-[700px] mx-auto p-4 md:p-14">
       <CardHeader>
@@ -71,7 +97,8 @@ export const TicketPreview = () => {
 </div>
 
         {/* Ticket Image Container: Takes full width of the Card */}
-        <div className="relative w-full aspect-[5/6] bg-cover bg-center rounded-lg shadow-lg overflow-hidden">
+        <div  id="ticket-preview"
+         className="relative w-full aspect-[5/6] bg-cover bg-center rounded-lg shadow-lg overflow-hidden">
           <Image
             src="/icons/ticket.svg"
             alt="Ticket background"
@@ -85,7 +112,7 @@ export const TicketPreview = () => {
             {/* Event Title & Info */}
             <div className="text-center text-[#FFFFFF]">
               <h2 className="text-2xl md:text-4xl  font-road_rage">
-                Techembera Fest "25
+                Techember Fest "25
               </h2>
               <p className="text-[0.625rem] md:text-sm  mt-2">
               📍D4 Rumens Road, Ikoyi, Lagos
@@ -183,14 +210,14 @@ export const TicketPreview = () => {
                 Generating...
               </div>
             ) : (
-              'Download Ticket'
+              "Download Ticket"
             )}
           </Button>
 
           <Button
             onClick={() => {
               reset();
-              router.push('/');
+              router.push("/");
             }}
             className="w-full border border-[#24A0B5] bg-transparent text-[#24A0B5] hover:bg-[#24A0B5]/10"
           >

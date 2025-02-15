@@ -1,5 +1,5 @@
 // src/store.ts
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface FormData {
   fullName: string;
@@ -23,42 +23,47 @@ interface TicketStore {
 export const useTicketStore = create<TicketStore>((set) => ({
   // Initial state
   step: 1,
-  ticketType: 'regular',
+  ticketType: "regular",
   ticketCount: 1,
   formData: {
-    fullName: '',
-    email: '',
-    avatar: '',
-    request: ''
+    fullName: "",
+    email: "",
+    avatar: "",
+    request: "",
   },
 
   // Actions
-  setTicketSelection: (type, count) => set({ 
-    ticketType: type, 
-    ticketCount: count 
-  }),
+  setTicketSelection: (type, count) =>
+    set({
+      ticketType: type,
+      ticketCount: count,
+    }),
 
-  setFormData: (data) => set((state) => ({
-    formData: { ...state.formData, ...data }
-  })),
+  setFormData: (data) =>
+    set((state) => ({
+      formData: { ...state.formData, ...data },
+    })),
 
-  nextStep: () => set((state) => ({ 
-    step: Math.min(state.step + 1, 3) 
-  })),
+  nextStep: () =>
+    set((state) => ({
+      step: Math.min(state.step + 1, 3),
+    })),
 
-  prevStep: () => set((state) => ({ 
-    step: Math.max(state.step - 1, 1) 
-  })),
+  prevStep: () =>
+    set((state) => ({
+      step: Math.max(state.step - 1, 1),
+    })),
 
-  reset: () => set({
-    step: 1,
-    ticketType: 'regular',
-    ticketCount: 1,
-    formData: {
-      fullName: '',
-      email: '',
-      avatar: '',
-      request: ''
-    }
-  })
+  reset: () =>
+    set({
+      step: 1,
+      ticketType: "regular",
+      ticketCount: 1,
+      formData: {
+        fullName: "",
+        email: "",
+        avatar: "",
+        request: "",
+      },
+    }),
 }));

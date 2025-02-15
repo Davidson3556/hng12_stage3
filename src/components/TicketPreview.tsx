@@ -1,4 +1,4 @@
-'use client'; 
+"use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useTicketStore } from "@/store";
@@ -15,7 +15,7 @@ function generateUniqueCode() {
 }
 export const TicketPreview = () => {
   const { formData, ticketType, ticketCount, reset } = useTicketStore();
-    const router = useRouter();
+  const router = useRouter();
   const [isDownloading, setIsDownloading] = useState(false);
   const [uniqueBarcode, setUniqueBarcode] = useState("");
   const [barcodeHeight, setBarcodeHeight] = useState(50);
@@ -43,46 +43,44 @@ export const TicketPreview = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Download the ticket as an image using html2canvas
+  const handleDownload = async () => {
+    setIsDownloading(true);
+    try {
+      const ticketElement = document.getElementById("ticket-preview");
+      if (!ticketElement) {
+        throw new Error("Ticket element not found");
+      }
 
- // Download the ticket as an image using html2canvas
- const handleDownload = async () => {
-  setIsDownloading(true);
-  try {
-    const ticketElement = document.getElementById("ticket-preview");
-    if (!ticketElement) {
-      throw new Error("Ticket element not found");
+      // Capture at desktop size with high resolution
+      const canvas = await html2canvas(ticketElement, {
+        useCORS: true,
+        scale: 3, // Triple the resolution for crisp image
+        windowWidth: 1200, // Simulate desktop viewport
+        windowHeight: 800,
+        width: 700, // Match your md:w-[700px] value
+        height: 840, // 700px * (6/5 aspect ratio) = 840px
+      });
+
+      const image = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = "ticket.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("Download failed. Please try again.");
     }
-
-    // Capture at desktop size with high resolution
-    const canvas = await html2canvas(ticketElement, {
-      useCORS: true,
-      scale: 3, // Triple the resolution for crisp image
-      windowWidth: 1200, // Simulate desktop viewport
-      windowHeight: 800,
-      width: 700, // Match your md:w-[700px] value
-      height: 840 // 700px * (6/5 aspect ratio) = 840px
-    });
-
-    const image = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    link.href = image;
-    link.download = "ticket.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  } catch (error) {
-    console.error("Download failed:", error);
-    alert("Download failed. Please try again.");
-  }
-  setIsDownloading(false);
-};
+    setIsDownloading(false);
+  };
 
   return (
-    <section className="main_card"
-    >
+    <section className="main_card">
       {/* Card Container: Fixed width on md and centered */}
       <Card className="bg-[#041E23] border-[#0E464F] md:w-[700px] mx-auto p-4 md:p-14">
-      <CardHeader>
+        <CardHeader>
           <CardTitle className="cardtitle1">
             <h1 className="h1">Ready</h1>
             <span className="span1">Step 3/3</span>
@@ -91,14 +89,18 @@ export const TicketPreview = () => {
             <div className="progress_bar" style={{ width: "100%" }} />
           </div>
         </CardHeader>
-<div className="text-center text-[#FFFFFF] space-y-4 p-6">
-    <h1 className="font-alatsi text-3xl">Your Ticket is Booked!</h1>
-    <p className="text-sm">Check your email for a copy or you can download</p>
-</div>
+        <div className="text-center text-[#FFFFFF] space-y-4 p-6">
+          <h1 className="font-alatsi text-3xl">Your Ticket is Booked!</h1>
+          <p className="text-sm">
+            Check your email for a copy or you can download
+          </p>
+        </div>
 
         {/* Ticket Image Container: Takes full width of the Card */}
-        <div  id="ticket-preview"
-         className="relative w-full aspect-[5/6] bg-cover bg-center rounded-lg shadow-lg overflow-hidden">
+        <div
+          id="ticket-preview"
+          className="relative w-full aspect-[5/6] bg-cover bg-center rounded-lg shadow-lg overflow-hidden"
+        >
           <Image
             src="/icons/ticket.svg"
             alt="Ticket background"
@@ -106,7 +108,7 @@ export const TicketPreview = () => {
             className=""
             priority
           />
-          
+
           {/* Content overlay */}
           <div className="relative z-10 h-full flex flex-col items-center justify-between p-7 md:p-14">
             {/* Event Title & Info */}
@@ -115,7 +117,7 @@ export const TicketPreview = () => {
                 Techember Fest "25
               </h2>
               <p className="text-[0.625rem] md:text-sm  mt-2">
-              📍D4 Rumens Road, Ikoyi, Lagos
+                📍D4 Rumens Road, Ikoyi, Lagos
                 <br />
                 📅March 15, 2025 | 7:00 PM
               </p>
@@ -124,7 +126,7 @@ export const TicketPreview = () => {
             {/* User Avatar */}
             <div className="relative mt-1 w-20 h-20 md:w-40 md:h-40 rounded-xl overflow-hidden border-2 border-[#24A0B5] pb-5">
               <Image
-                src={formData.avatar || '/default-avatar.png'}
+                src={formData.avatar || "/default-avatar.png"}
                 alt="User Avatar"
                 fill
                 className="object"
@@ -134,65 +136,76 @@ export const TicketPreview = () => {
 
             {/* Ticket Details */}
             <div className=" w-[179px] md:w-[300px] md:mb-5 bg-[#08343C] p-4 rounded-md backdrop-blur-sm">
-            <div className="grid grid-cols-2 gap-2 ">
-    <div >
-      <label className="block text-[0.625rem] text-[#ffffff54] mb-1">Name</label>
-      <h3 className="text-xs  font-bold text-[#FFFFFF] truncate">
-        {formData.fullName}
-      </h3>
-    </div>
-    
-    <div>
-      <label className="block text-[0.625rem] text-[#ffffff54] mb-1">Email</label>
-      <p className="text-xs font-bold text-[#FFFFFF] truncate">
-        {formData.email}
-      </p>
-    </div>
-  </div>
+              <div className="grid grid-cols-2 gap-2 ">
+                <div>
+                  <label className="block text-[0.625rem] text-[#ffffff54] mb-1">
+                    Name
+                  </label>
+                  <h3 className="text-xs  font-bold text-[#FFFFFF] truncate">
+                    {formData.fullName}
+                  </h3>
+                </div>
 
-  {/* Row 2: Ticket Type & Count */}
-  <div className="mt-2 grid grid-cols-2 gap-2 border-t border-[#12464E]  ">
-    <div>
-      <label className="block text-[0.625rem] text-[#ffffff54] mb-1">Ticket Type</label>
-      <p className="text-xs text-[0.625rem] text-[#FFFFFF] ">
-        {ticketType.toUpperCase()}
-      </p>
-    </div>
-    <div>
-      <label className="block text-[0.625rem] text-[#ffffff54] mb-1">Ticket for:</label>
-      <p className="text-xs text-[0.625rem] text-[#FFFFFF] ">
-        {ticketCount}
-      </p>
-    </div>
-  </div>
+                <div>
+                  <label className="block text-[0.625rem] text-[#ffffff54] mb-1">
+                    Email
+                  </label>
+                  <p className="text-xs font-bold text-[#FFFFFF] truncate">
+                    {formData.email}
+                  </p>
+                </div>
+              </div>
 
-  {/* Row 3: Special Request */}
-  <div className="mt-4 border-t border-[#12464E]">
-    <label className="block text-xs text-[#ffffff54] ">Special Request?</label>
-    <p className="text-sm text-white break-words line-clamp-3">
-      {formData.request || 'Nil? or the user request comes here'}
-    </p>
-  </div>
-            
+              {/* Row 2: Ticket Type & Count */}
+              <div className="mt-2 grid grid-cols-2 gap-2 border-t border-[#12464E]  ">
+                <div>
+                  <label className="block text-[0.625rem] text-[#ffffff54] mb-1">
+                    Ticket Type
+                  </label>
+                  <p className="text-xs text-[0.625rem] text-[#FFFFFF] ">
+                    {ticketType.toUpperCase()}
+                  </p>
+                </div>
+                <div>
+                  <label className="block text-[0.625rem] text-[#ffffff54] mb-1">
+                    Ticket for:
+                  </label>
+                  <p className="text-xs text-[0.625rem] text-[#FFFFFF] ">
+                    {ticketCount}
+                  </p>
+                </div>
+              </div>
+
+              {/* Row 3: Special Request */}
+              <div className="mt-4 border-t border-[#12464E]">
+                <label className="block text-xs text-[#ffffff54] ">
+                  Special Request?
+                </label>
+                <p className="text-sm text-white break-words line-clamp-3">
+                  {formData.request || "Nil? or the user request comes here"}
+                </p>
+              </div>
             </div>
 
             {/* Barcode */}
             <div className="text-center pt-9">
-            {uniqueBarcode ? (
-    <>
-      <Barcode
-        value={uniqueBarcode}
-        background=""
-        lineColor="#FFFFFF"
-        width={barcodeWidth}
-        height={barcodeHeight}
-        displayValue={false} // Hides the default barcode text
-      />
-      <p className=" md:mt-4  text-xs text-[#FFFFFF]">{uniqueBarcode}</p>
-    </>
-  ) : (
-    <p className="text-xs text-[#FFFFFF]">Loading Barcode...</p>
-  )}
+              {uniqueBarcode ? (
+                <>
+                  <Barcode
+                    value={uniqueBarcode}
+                    background=""
+                    lineColor="#FFFFFF"
+                    width={barcodeWidth}
+                    height={barcodeHeight}
+                    displayValue={false} // Hides the default barcode text
+                  />
+                  <p className=" md:mt-4  text-xs text-[#FFFFFF]">
+                    {uniqueBarcode}
+                  </p>
+                </>
+              ) : (
+                <p className="text-xs text-[#FFFFFF]">Loading Barcode...</p>
+              )}
             </div>
           </div>
         </div>

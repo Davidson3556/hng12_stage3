@@ -1,11 +1,9 @@
 "use client";
-import { useTicketStore } from '@/store';
+import { useTicketStore } from "@/store";
 import LandingPage from "@/components/LandingPage";
-import { RegistrationForm } from '@/components/RegistrationForm';
-import { TicketPreview } from '@/components/TicketPreview';
-import NavBar from '@/components/NavBar';
-
-
+import { RegistrationForm } from "@/components/RegistrationForm";
+import { TicketPreview } from "@/components/TicketPreview";
+import NavBar from "@/components/NavBar";
 
 export default function HomePage() {
   const { step } = useTicketStore();
@@ -19,4 +17,3 @@ export default function HomePage() {
     </main>
   );
 }
-

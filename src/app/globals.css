@@ -93,16 +93,16 @@ body {
   @apply flex items-center justify-between;
 }
 .h1 {
-  @apply font-jejumyeongjo text-xl md:text-2xl font-normal text-[#FFFFFF] ;
+  @apply font-jejumyeongjo text-xl md:text-2xl font-normal text-[#FFFFFF];
 }
 .span1 {
-  @apply text-xs md:text-sm text-gray-300 ;
+  @apply text-xs md:text-sm text-gray-300;
 }
 .progress {
-  @apply relative w-full bg-[#0E464F] h-1 mt-2 rounded ;
+  @apply relative w-full bg-[#0E464F] h-1 mt-2 rounded;
 }
 .progress_bar {
-  @apply absolute left-0 top-0 h-full bg-[#24A0B5] rounded transition-all duration-300 ;
+  @apply absolute left-0 top-0 h-full bg-[#24A0B5] rounded transition-all duration-300;
 }
 .body_card {
   @apply border-0 md:border border-[#0E464F] md:bg-[#08252B] sm:bg-transparent  md:m-6 rounded-xl;
@@ -111,7 +111,7 @@ body {
   @apply flex flex-col md:flex-row justify-between gap-2 mt-4;
 }
 .button1 {
-  @apply w-full md:w-[45%] border border-[#24A0B5] bg-transparent text-[#24A0B5] ;
+  @apply w-full md:w-[45%] border border-[#24A0B5] bg-transparent text-[#24A0B5];
 }
 .button2 {
   @apply w-full md:w-[45%] bg-[#24A0B5]  text-[#FFFFFF];

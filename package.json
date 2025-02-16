@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:no-lint": "next dev --no-lint",
+    "dev": "next dev",
     "build:no-lint": "next build --no-lint",
     "start": "next start",
     "lint": "next lint"
